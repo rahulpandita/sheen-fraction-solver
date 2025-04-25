@@ -1,5 +1,3 @@
-print("Hello, World!")
-print("This is a project.")
 
 def add_fractions(fraction1, fraction2):
     """
@@ -35,12 +33,28 @@ def add_fractions(fraction1, fraction2):
     return result_numerator, common_denominator
 
 
+def get_fraction_input():
+    """
+    Prompts the user for a fraction input.
 
+    Returns:
+        tuple: The fraction as a tuple (numerator, denominator).
+    """
+    while True:
+        try:
+            numerator = int(input("Enter the numerator: "))
+            denominator = int(input("Enter the denominator: "))
+            if denominator == 0:
+                raise ValueError("Denominator cannot be zero.")
+            return numerator, denominator
+        except ValueError as e:
+            print(f"Invalid input: {e}. Please try again.")
 
 def main():
-    # Example usage
-    fraction1 = (1, 3)  # 1/2
-    fraction2 = (1, 6)  # 1/3
+    
+    fraction1 = get_fraction_input()
+    fraction2 = get_fraction_input()
+    print(f"Adding fractions: {fraction1} and {fraction2}")
 
     result = add_fractions(fraction1, fraction2)
     print(f"The sum of {fraction1} and {fraction2} is: {result[0]}/{result[1]}")
